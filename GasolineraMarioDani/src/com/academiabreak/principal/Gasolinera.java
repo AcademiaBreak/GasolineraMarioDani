@@ -138,13 +138,44 @@ public class Gasolinera {
 			}
 			break;
 		case 5:
-			bajaVehiculo();
+			if (!clientes.isEmpty()) {
+				bajaVehiculo();
+			} else {
+				try {
+					System.out.print("Actualmente no hay socios. ");
+					Utilidades.pulsaIntro();
+				} catch (IOException ioe) {
+					System.out.println("Error al leer de teclado...");
+				}
+			}
 		}
 	}
 
 	private static void bajaVehiculo() {
-		// TODO: Implementar baja vehiculo
-
+		String dni=elegirCliente();
+		String matricula="";
+		
+		try{
+			if(Utilidades.esDni(dni) && clientes.containsKey(dni)){
+				if(clientes.get(dni).tieneVehiculos()) {
+					//TODO: hacer listarVehiculos(); 
+					System.out.print("\tIntroduzca la matricula del vehiculo: ");
+					matricula = in.readLine();
+					if(clientes.get(dni).eliminarVehiculo(matricula)){
+						System.out.println("El vehiculo ha sido eliminado correctamente. ");
+					}else{
+						System.out.println("No se ha encontrado un vehiculo con esa matricula. ");
+					}
+				} else {
+					System.out.println("Este cliente no tiene ningun vehiculo. ");
+				}
+				Utilidades.pulsaIntro();
+			}
+		}catch (IOException ioe) {
+			System.out.println("Error al leer de teclado...");
+		}
+		
+		
 	}
 
 	private static void altaCliente() {
@@ -235,6 +266,7 @@ public class Gasolinera {
 	private static void altaVehiculo() {
 		String dni = elegirCliente();
 		Vehiculo vehiculo;
+		
 		try {
 			if (Utilidades.esDni(dni) && clientes.containsKey(dni)) {
 				Utilidades.limpiarPantalla();

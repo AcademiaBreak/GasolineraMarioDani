@@ -89,6 +89,10 @@ public class Socio {
 		return vehiculos.containsKey(matricula); 
 	}
 	
+	public boolean tieneVehiculos(){
+		return vehiculos.isEmpty();
+	}
+	
 	public void ingresarSaldo(double cant) {
 		this.saldo += cant; 
 	}

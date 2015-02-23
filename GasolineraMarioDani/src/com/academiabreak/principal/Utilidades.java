@@ -36,7 +36,6 @@ public class Utilidades {
 
 	public static boolean esEntero(String cad) {
 		boolean esEntero = !cad.isEmpty();
-		//TODO: preguntar esto
 		int i = 0;
 
 		while (i < cad.length() && esEntero) {
