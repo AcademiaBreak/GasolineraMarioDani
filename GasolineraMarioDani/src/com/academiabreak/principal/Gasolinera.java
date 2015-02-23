@@ -19,11 +19,7 @@ public class Gasolinera {
 
 		menuPrincipal();
 	}
-	
-	private static void hola() {
-		//prueba
-	}
-	
+
 	private static void menuPrincipal() {
 		String cad = "";
 		int opc = 0;
@@ -198,7 +194,7 @@ public class Gasolinera {
 		} else {
 			System.out.print("DNI no valido. ");
 		}
-		
+
 		try {
 			Utilidades.pulsaIntro();
 		} catch (IOException ioe) {
@@ -242,45 +238,48 @@ public class Gasolinera {
 		try {
 			if (Utilidades.esDni(dni) && clientes.containsKey(dni)) {
 				Utilidades.limpiarPantalla();
-				vehiculo = crearVehiculo(); 
-				if(vehiculo != null) {
+				vehiculo = crearVehiculo();
+				if (vehiculo != null) {
 					clientes.get(dni).insertarVehiculo(vehiculo);
-					System.out.println("*** Se procede a dar de alta el vehiculo del cliente: ");
-					System.out.println("Nombre con DNI: "+dni+" Vehículo con matrícula: " +vehiculo.getMatricula());
+					System.out
+							.println("*** Se procede a dar de alta el vehiculo del cliente: ");
+					System.out.println("Nombre con DNI: " + dni
+							+ " Vehículo con matrícula: "
+							+ vehiculo.getMatricula());
 					Utilidades.pulsaIntro();
 				}
 			} else {
 				System.out.print("DNI no valido. ");
-				Utilidades.pulsaIntro();			
+				Utilidades.pulsaIntro();
 			}
 		} catch (IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
-			
+
 	}
 
 	private static Vehiculo crearVehiculo() {
 		Vehiculo vehiculo = null;
-		String matricula,marca, tipo; 
-		
+		String matricula, marca, tipo;
+
 		try {
 			System.out.print("Introduzca la matricula del vehiculo: ");
 			matricula = in.readLine();
-			if(!existeVehiculo(matricula)) {
+			if (!existeVehiculo(matricula)) {
 				System.out.print("Introduzca la marca del vehiculo: ");
-				marca = in.readLine(); 
+				marca = in.readLine();
 				System.out.println("1. Coche");
 				System.out.println("2. Moto");
 				System.out.print("\tElige tipo de vehiculo: ");
-				tipo = in.readLine(); 
-				if(Utilidades.esOpcionValida(tipo, 1, 2)) {
+				tipo = in.readLine();
+				if (Utilidades.esOpcionValida(tipo, 1, 2)) {
 					System.out.println("");
-					switch(Integer.parseInt(tipo)) {
-					case 1: 
-						vehiculo = crearCoche(matricula, marca); 
-						break; 
-					case 2: 
-						vehiculo = crearMoto(matricula, marca); 
+					switch (Integer.parseInt(tipo)) {
+					case 1:
+						vehiculo = crearCoche(matricula, marca);
+						break;
+					case 2:
+						vehiculo = crearMoto(matricula, marca);
 					}
 				} else {
 					System.out.print("Opcion no valida. ");
@@ -293,24 +292,26 @@ public class Gasolinera {
 		} catch (IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
-		
+
 		return vehiculo;
 	}
-	
+
 	private static Coche crearCoche(String matricula, String marca) {
-		Coche coche = null; 
-		String modelo, tipoCar; 
-		
+		Coche coche = null;
+		String modelo, tipoCar;
+
 		try {
 			System.out.print("Introduzca modelo: ");
-			modelo = in.readLine(); 
+			modelo = in.readLine();
 			System.out.println("1. " + Combustible.DIESEL);
 			System.out.println("2. " + Combustible.GASOLINA);
 			System.out.println("3. " + Combustible.ELECTRICO);
 			System.out.print("\tElija tipo de carburante: ");
-			tipoCar = in.readLine(); 
-			if(Utilidades.esOpcionValida(tipoCar, 1, 3)) {
-				coche = new Coche(matricula, marca, modelo, Combustible.getCombustibleByNum(Integer.parseInt(tipoCar)));
+			tipoCar = in.readLine();
+			if (Utilidades.esOpcionValida(tipoCar, 1, 3)) {
+				coche = new Coche(matricula, marca, modelo,
+						Combustible.getCombustibleByNum(Integer
+								.parseInt(tipoCar)));
 			} else {
 				System.out.print("Tipo de carburante no valido. ");
 				Utilidades.pulsaIntro();
@@ -318,44 +319,44 @@ public class Gasolinera {
 		} catch (IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
-		
-		return coche; 
+
+		return coche;
 	}
-	
+
 	private static Moto crearMoto(String matricula, String marca) {
-		Moto moto = null; 
-		String cc; 
-		
+		Moto moto = null;
+		String cc;
+
 		try {
 			System.out.print("Introduce cilindrada");
-			cc=in.readLine();
-			if(Utilidades.esEntero(cc)){
-				moto= new Moto(matricula,marca,Integer.parseInt(cc));
-			}else{
+			cc = in.readLine();
+			if (Utilidades.esEntero(cc)) {
+				moto = new Moto(matricula, marca, Integer.parseInt(cc));
+			} else {
 				System.out.print("Cilindrada no válida. ");
 				Utilidades.pulsaIntro();
 			}
-			
+
 		} catch (IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
-		
-		return moto; 
+
+		return moto;
 	}
 
 	private static boolean existeVehiculo(String matricula) {
 		Enumeration claves = clientes.keys();
-		boolean encontrado = false; 
-		
+		boolean encontrado = false;
+
 		while (claves.hasMoreElements() && !encontrado) {
-			if(clientes.get(claves.nextElement()).estaVehiculo(matricula)) {
-				encontrado = true; 
+			if (clientes.get(claves.nextElement()).estaVehiculo(matricula)) {
+				encontrado = true;
 			}
 		}
-		
-		return encontrado; 
+
+		return encontrado;
 	}
-	
+
 	private static String elegirCliente() {
 		String dni = "";
 
