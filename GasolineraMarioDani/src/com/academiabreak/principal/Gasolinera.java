@@ -19,10 +19,6 @@ public class Gasolinera {
 
 		menuPrincipal();
 	}
-
-	private static void hola() {
-		//Prueba
-	}
 	
 	private static void menuPrincipal() {
 		String cad = "";
