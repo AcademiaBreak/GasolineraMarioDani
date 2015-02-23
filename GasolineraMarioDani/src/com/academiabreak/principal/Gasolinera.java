@@ -20,6 +20,10 @@ public class Gasolinera {
 		menuPrincipal();
 	}
 	
+	private static void hola() {
+		//prueba
+	}
+	
 	private static void menuPrincipal() {
 		String cad = "";
 		int opc = 0;
