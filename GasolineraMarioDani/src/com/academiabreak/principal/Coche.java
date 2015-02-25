@@ -2,18 +2,18 @@ package com.academiabreak.principal;
 
 public class Coche extends Vehiculo {
 	private String modelo;
-	private Combustible combustible; 
-	
+	private Combustible combustible;
+
 	public Coche() {
-		super(); 
-		modelo = ""; 
+		super();
+		modelo = "";
 		combustible = null;
 	}
 
 	public Coche(String matricula, String marca, String modelo, Combustible com) {
 		super(matricula, marca);
-		this.modelo=modelo;
-		this.combustible = com; 
+		this.modelo = modelo;
+		this.combustible = com;
 	}
 
 	public String getModelo() {
@@ -32,4 +32,9 @@ public class Coche extends Vehiculo {
 		this.combustible = combustible;
 	}
 
+	@Override
+	public String toString() {
+		return "Matricula: " + super.getMatricula() + "\nMarca: " + super.getMarca() + "\nModelo: " + this.modelo
+				+ "\nCombustible: "+this.combustible;
+	}
 }

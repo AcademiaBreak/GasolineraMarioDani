@@ -85,12 +85,16 @@ public class Socio {
 		return eliminado; 
 	}
 	
+	public Hashtable<String,Vehiculo> getVehiculos() {
+		return (Hashtable<String, Vehiculo>)vehiculos.clone(); 
+	}
+	
 	public boolean estaVehiculo(String matricula) {
 		return vehiculos.containsKey(matricula); 
 	}
 	
 	public boolean tieneVehiculos(){
-		return vehiculos.isEmpty();
+		return !vehiculos.isEmpty();
 	}
 	
 	public void ingresarSaldo(double cant) {
