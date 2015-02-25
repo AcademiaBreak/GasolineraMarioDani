@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import com.academiabreak.principal.Utilidades;
 
+// Dani
 public class Gasolinera {
 	private static Surtidor surtidores[];
 	private static Hashtable<String, Socio> clientes;
