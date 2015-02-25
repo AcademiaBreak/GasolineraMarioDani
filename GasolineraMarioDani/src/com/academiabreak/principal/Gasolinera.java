@@ -56,11 +56,13 @@ public class Gasolinera {
 			gestionClientes();
 			break;
 		case 2:
-			// atencionClientes();
+			atencionClientes();
 			break;
 		}
 	}
+	
 
+	
 	// GESTION CLIENTES
 	private static void gestionClientes() {
 		int opc;
@@ -413,6 +415,71 @@ public class Gasolinera {
 	}
 
 	// FIN GESTION CLIENTES
+	
+	// TODO:ATENCION CLIENTES
+	private static void atencionClientes() {
+		String cad;
+		int opc;
+		
+		Utilidades.limpiarPantalla();
+		System.out.println("\t1. Recibir vehiculo. ");
+		System.out.println("\t2. Atender vehiculo. ");
+		System.out.println("\t3. Ver Ocupacion Surtidores. ");
+		System.out.println("\t4. Salir");
+		System.out.print("\t OPCION: ");
+		try{
+			cad=in.readLine();
+			
+			if(Utilidades.esOpcionValida(cad, 1, 4)){
+				opc=Integer.parseInt(cad);
+				realizarAccionAtencionCliente(opc);
+			}
+			else{
+				System.out.println();
+				System.out.println("Opcion Invalida");
+			}
+			
+		} catch (IOException ioe) {
+			System.out.println("Error al leer de teclado...");
+		}
+	}
+	
+	public static  void realizarAccionAtencionCliente(int opc){
+		switch (opc) {
+		case 1:
+			recibirVehiculo();
+			break;
+			
+		case 2:
+			//Atender Vehiculo
+			break;
+			
+		case 3:
+			//Ver Ocupacion Surtidores
+			break;
+		}
+	}
+	
+	
+	public static void recibirVehiculo(){
+		Utilidades.limpiarPantalla();
+		String matricula;
+		
+		try{
+			System.out.println("Introduzca la matricula del vehiculo: ");
+			matricula=in.readLine();
+			
+			if(existeVehiculo(matricula)){
+				
+			}
+			
+		}catch (IOException ioe) {
+			System.out.println("Error al leer de teclado...");
+		}
+		
+	}
+	
+	//FIN ATENCION CLIENTE
 
 	private static int obtenerNumSurtidores() {
 		String cad = "";
