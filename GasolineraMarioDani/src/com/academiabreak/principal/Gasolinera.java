@@ -288,6 +288,7 @@ public class Gasolinera {
 					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni + " Vehículo con matrícula: "
 							+ vehiculo.getMatricula());
 					Utilidades.pulsaIntro();
+					//HOLA
 				}
 			} else {
 				System.out.print("DNI no valido. ");
