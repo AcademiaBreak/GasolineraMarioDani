@@ -24,6 +24,10 @@ public class Surtidor {
 		return lista.remove(0);
 	}
 	
+	public Vehiculo getVehiculo(int pos){
+		return lista.get(pos);  
+	}
+	
 	public int getTamaño() {
 		return lista.size(); 
 	}

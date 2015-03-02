@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Enumeration;
 import java.util.Hashtable;
+
 import com.academiabreak.principal.Utilidades;
 
 public class Gasolinera {
@@ -151,10 +152,14 @@ public class Gasolinera {
 					listarVehiculos(clientes.get(dni));
 					System.out.print("\tIntroduzca la matricula del vehiculo: ");
 					matricula = in.readLine();
-					if(clientes.get(dni).eliminarVehiculo(matricula)) {
-						System.out.println("El vehiculo ha sido eliminado correctamente. ");
+					if(!estaEnSurtidor(matricula)) {
+						if(clientes.get(dni).eliminarVehiculo(matricula)) {
+							System.out.println("El vehiculo ha sido eliminado correctamente. ");
+						} else {
+							System.out.println("No se ha encontrado un vehiculo con esa matricula. ");
+						}
 					} else {
-						System.out.println("No se ha encontrado un vehiculo con esa matricula. ");
+						System.out.println("Este vehiculo esta en cola. ");
 					}
 				} else {
 					System.out.println("Este cliente no tiene ningun vehiculo. ");
@@ -164,9 +169,52 @@ public class Gasolinera {
 		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
-
 	}
 
+	private static boolean estaEnSurtidor(String matricula){
+		boolean encontrado=false;
+		int i=0;
+		int j;
+		
+		while(!encontrado && i<surtidores.length){
+			j=0;
+			while(!encontrado && j<surtidores[i].getTamaño()){
+				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)){
+					encontrado=true;
+				}else{
+					j++;
+				}
+			}
+			i++;
+		}
+			
+		return encontrado;
+	}
+	
+	private static boolean estaEnSurtidor(Enumeration matriculas){
+		boolean encontrado=false;
+		int i=0;
+		int j;
+		String matricula;
+		
+		while(matriculas.hasMoreElements() && !encontrado){
+			matricula= (String)matriculas.nextElement();
+			while(!encontrado && i<surtidores.length){
+				j=0;
+				while(!encontrado && j<surtidores[i].getTamaño()){
+					if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)){
+						encontrado=true;
+					}else{
+						j++;
+					}
+				}
+				i++;
+			}
+		}
+			
+		return encontrado;
+	}
+	
 	private static void listarVehiculos(Socio soc) {
 		Hashtable<String, Vehiculo> vehiculos = soc.getVehiculos();
 		Enumeration claves = vehiculos.keys();
@@ -219,8 +267,12 @@ public class Gasolinera {
 		String dni = elegirCliente();
 
 		if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
-			clientes.remove(dni);
-			System.out.print("se ha dado de baja correctamente");
+			if(estaEnSurtidor(clientes.get(dni).getVehiculos().keys())){
+				System.out.println("Este cliente tiene algún vehículo en cola. ");
+			}else{
+				clientes.remove(dni);
+				System.out.print("se ha dado de baja correctamente");
+			}
 		} else {
 			System.out.print("DNI no valido. ");
 		}
@@ -277,7 +329,7 @@ public class Gasolinera {
 					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni + " Vehículo con matrícula: "
 							+ vehiculo.getMatricula());
 					Utilidades.pulsaIntro();
-					//HOLA
+					
 				}
 			} else {
 				System.out.print("DNI no valido. ");
@@ -459,7 +511,9 @@ public class Gasolinera {
 			matricula = in.readLine();
 
 			if(existeVehiculo(matricula)) {
-
+				//TODO: coger vehiculo con esa matricula
+				//TODO: coger surtidor que tiene menos vehiculos.
+				//TODO: insertar vehiculo en ese surtidor
 			}
 		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
