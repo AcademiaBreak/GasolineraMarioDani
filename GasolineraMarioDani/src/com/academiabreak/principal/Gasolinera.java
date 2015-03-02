@@ -102,55 +102,44 @@ public class Gasolinera {
 			altaCliente();
 			break;
 		case 2:
-			if(!clientes.isEmpty()) {
+			if(hayClientes()) {
 				bajaCliente();
-			} else {
-				try {
-					System.out.print("Actualmente no hay socios. ");
-					Utilidades.pulsaIntro();
-				} catch(IOException ioe) {
-					System.out.println("Error al leer de teclado...");
-				}
-			}
+			} 
 			break;
 		case 3:
-			if(!clientes.isEmpty()) {
+			if(hayClientes()) {
 				ingresarSaldo();
-			} else {
-				try {
-					System.out.print("Actualmente no hay socios. ");
-					Utilidades.pulsaIntro();
-				} catch(IOException ioe) {
-					System.out.println("Error al leer de teclado...");
-				}
 			}
 			break;
 		case 4:
-			if(!clientes.isEmpty()) {
+			if(hayClientes()) {
 				altaVehiculo();
-			} else {
-				try {
-					System.out.print("Actualmente no hay socios. ");
-					Utilidades.pulsaIntro();
-				} catch(IOException ioe) {
-					System.out.println("Error al leer de teclado...");
-				}
-			}
+			} 
 			break;
 		case 5:
-			if(!clientes.isEmpty()) {
+			if(hayClientes()) {
 				bajaVehiculo();
-			} else {
-				try {
-					System.out.print("Actualmente no hay socios. ");
-					Utilidades.pulsaIntro();
-				} catch(IOException ioe) {
-					System.out.println("Error al leer de teclado...");
-				}
 			}
 		}
 	}
 
+	private static boolean hayClientes() {
+		boolean hayClientes = true; 
+
+		if(clientes.isEmpty()) {
+			hayClientes = false; 
+			
+			try {
+				System.out.print("Actualmente no hay socios. ");
+				Utilidades.pulsaIntro();
+			} catch(IOException ioe) {
+				System.out.println("Error al leer de teclado...");
+			}
+		}
+		
+		return hayClientes; 
+	}
+	
 	private static void bajaVehiculo() {
 		String dni = elegirCliente();
 		String matricula = "";
@@ -419,7 +408,6 @@ public class Gasolinera {
 			System.out.println("");
 		}
 	}
-
 	// FIN GESTION CLIENTES
 
 	// TODO:ATENCION CLIENTES
@@ -478,7 +466,6 @@ public class Gasolinera {
 		}
 
 	}
-
 	// FIN ATENCION CLIENTE
 
 	private static int obtenerNumSurtidores() {
