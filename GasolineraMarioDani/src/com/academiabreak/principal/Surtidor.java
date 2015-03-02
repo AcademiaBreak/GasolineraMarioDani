@@ -28,7 +28,7 @@ public class Surtidor {
 		return lista.get(pos);  
 	}
 	
-	public int getTamaño() {
+	public int getTamaÃ±o() {
 		return lista.size(); 
 	}
 	

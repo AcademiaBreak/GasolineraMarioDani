@@ -178,7 +178,7 @@ public class Gasolinera {
 		
 		while(!encontrado && i<surtidores.length){
 			j=0;
-			while(!encontrado && j<surtidores[i].getTamaño()){
+			while(!encontrado && j<surtidores[i].getTamaÃ±o()){
 				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)){
 					encontrado=true;
 				}else{
@@ -201,7 +201,7 @@ public class Gasolinera {
 			matricula= (String)matriculas.nextElement();
 			while(!encontrado && i<surtidores.length){
 				j=0;
-				while(!encontrado && j<surtidores[i].getTamaño()){
+				while(!encontrado && j<surtidores[i].getTamaÃ±o()){
 					if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)){
 						encontrado=true;
 					}else{
@@ -268,7 +268,7 @@ public class Gasolinera {
 
 		if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
 			if(estaEnSurtidor(clientes.get(dni).getVehiculos().keys())){
-				System.out.println("Este cliente tiene algún vehículo en cola. ");
+				System.out.println("Este cliente tiene algï¿½n vehï¿½culo en cola. ");
 			}else{
 				clientes.remove(dni);
 				System.out.print("se ha dado de baja correctamente");
@@ -290,7 +290,7 @@ public class Gasolinera {
 		String cad = "";
 
 		if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
-			System.out.println("¿Cuanto saldo quiere ingresar?");
+			System.out.println("ï¿½Cuanto saldo quiere ingresar?");
 			try {
 				cad = in.readLine();
 				if(Utilidades.esDecimal(cad)) {
@@ -326,7 +326,7 @@ public class Gasolinera {
 					clientes.get(dni).insertarVehiculo(vehiculo);
 					System.out.println("");
 					System.out.println("*** Se procede a dar de alta el vehiculo del cliente: ");
-					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni + " Vehículo con matrícula: "
+					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni + " Vehï¿½culo con matrï¿½cula: "
 							+ vehiculo.getMatricula());
 					Utilidades.pulsaIntro();
 					
@@ -414,7 +414,7 @@ public class Gasolinera {
 			if(Utilidades.esEntero(cc)) {
 				moto = new Moto(matricula, marca, Integer.parseInt(cc));
 			} else {
-				System.out.print("Cilindrada no válida. ");
+				System.out.print("Cilindrada no vï¿½lida. ");
 				Utilidades.pulsaIntro();
 			}
 
