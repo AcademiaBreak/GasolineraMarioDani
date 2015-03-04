@@ -26,7 +26,7 @@ public class Gasolinera {
 		int opc = 0;
 		boolean salir = false;
 
-		while (!salir) {
+		while(!salir) {
 			Utilidades.limpiarPantalla();
 			System.out.println("1. Gestion Clientes.");
 			System.out.println("2. Atencion Clientes.");
@@ -34,9 +34,9 @@ public class Gasolinera {
 			System.out.print("\tOPCION: ");
 			try {
 				cad = in.readLine();
-				if (Utilidades.esOpcionValida(cad, 1, 3)) {
+				if(Utilidades.esOpcionValida(cad, 1, 3)) {
 					opc = Integer.parseInt(cad);
-					if (opc == 3) {
+					if(opc == 3) {
 						salir = true;
 					} else {
 						realizarAccionMenuPrincipal(opc);
@@ -45,14 +45,14 @@ public class Gasolinera {
 					System.out.print("Opcion invalida, ");
 					Utilidades.pulsaIntro();
 				}
-			} catch (IOException ioe) {
+			} catch(IOException ioe) {
 				System.out.println("Error al leer de teclado...");
 			}
 		}
 	}
 
 	private static void realizarAccionMenuPrincipal(int opc) {
-		switch (opc) {
+		switch(opc) {
 		case 1:
 			gestionClientes();
 			break;
@@ -68,7 +68,7 @@ public class Gasolinera {
 		String cad = "";
 		boolean salir = false;
 
-		while (!salir) {
+		while(!salir) {
 			Utilidades.limpiarPantalla();
 			System.out.println("1. Alta Cliente.");
 			System.out.println("2. Baja Cliente.");
@@ -79,9 +79,9 @@ public class Gasolinera {
 			System.out.print("\tOPCION: ");
 			try {
 				cad = in.readLine();
-				if (Utilidades.esOpcionValida(cad, 1, 6)) {
+				if(Utilidades.esOpcionValida(cad, 1, 6)) {
 					opc = Integer.parseInt(cad);
-					if (opc == 6) {
+					if(opc == 6) {
 						salir = true;
 					} else {
 						Utilidades.limpiarPantalla();
@@ -91,34 +91,34 @@ public class Gasolinera {
 					System.out.print("Opcion invalida, ");
 					Utilidades.pulsaIntro();
 				}
-			} catch (IOException ioe) {
+			} catch(IOException ioe) {
 				System.out.println("Error al leer de teclado...");
 			}
 		}
 	}
 
 	private static void realizarAccionGestionClientes(int opc) {
-		switch (opc) {
+		switch(opc) {
 		case 1:
 			altaCliente();
 			break;
 		case 2:
-			if (hayClientes()) {
+			if(hayClientes()) {
 				bajaCliente();
 			}
 			break;
 		case 3:
-			if (hayClientes()) {
+			if(hayClientes()) {
 				ingresarSaldo();
 			}
 			break;
 		case 4:
-			if (hayClientes()) {
+			if(hayClientes()) {
 				altaVehiculo();
 			}
 			break;
 		case 5:
-			if (hayClientes()) {
+			if(hayClientes()) {
 				bajaVehiculo();
 			}
 		}
@@ -127,13 +127,13 @@ public class Gasolinera {
 	private static boolean hayClientes() {
 		boolean hayClientes = true;
 
-		if (clientes.isEmpty()) {
+		if(clientes.isEmpty()) {
 			hayClientes = false;
 
 			try {
 				System.out.print("Actualmente no hay socios. ");
 				Utilidades.pulsaIntro();
-			} catch (IOException ioe) {
+			} catch(IOException ioe) {
 				System.out.println("Error al leer de teclado...");
 			}
 		}
@@ -146,31 +146,27 @@ public class Gasolinera {
 		String matricula = "";
 
 		try {
-			if (Utilidades.esDni(dni) && clientes.containsKey(dni)) {
-				if (clientes.get(dni).tieneVehiculos()) {
+			if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
+				if(clientes.get(dni).tieneVehiculos()) {
 					Utilidades.limpiarPantalla();
 					listarVehiculos(clientes.get(dni));
-					System.out
-							.print("\tIntroduzca la matricula del vehiculo: ");
+					System.out.print("\tIntroduzca la matricula del vehiculo: ");
 					matricula = in.readLine();
-					if (!estaEnSurtidor(matricula)) {
-						if (clientes.get(dni).eliminarVehiculo(matricula)) {
-							System.out
-									.println("El vehiculo ha sido eliminado correctamente. ");
+					if(!estaEnSurtidor(matricula)) {
+						if(clientes.get(dni).eliminarVehiculo(matricula)) {
+							System.out.println("El vehiculo ha sido eliminado correctamente. ");
 						} else {
-							System.out
-									.println("No se ha encontrado un vehiculo con esa matricula. ");
+							System.out.println("No se ha encontrado un vehiculo con esa matricula. ");
 						}
 					} else {
 						System.out.println("Este vehiculo esta en cola. ");
 					}
 				} else {
-					System.out
-							.println("Este cliente no tiene ningun vehiculo. ");
+					System.out.println("Este cliente no tiene ningun vehiculo. ");
 				}
 				Utilidades.pulsaIntro();
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 	}
@@ -180,11 +176,10 @@ public class Gasolinera {
 		int i = 0;
 		int j;
 
-		while (!encontrado && i < surtidores.length) {
+		while(!encontrado && i < surtidores.length) {
 			j = 0;
-			while (!encontrado && j < surtidores[i].getTamanio()) {
-				if (surtidores[i].getVehiculo(j).getMatricula()
-						.equalsIgnoreCase(matricula)) {
+			while(!encontrado && j < surtidores[i].getTamanio()) {
+				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
 					encontrado = true;
 				} else {
 					j++;
@@ -202,13 +197,12 @@ public class Gasolinera {
 		int j;
 		String matricula;
 
-		while (matriculas.hasMoreElements() && !encontrado) {
-			matricula = (String) matriculas.nextElement();
-			while (!encontrado && i < surtidores.length) {
+		while(matriculas.hasMoreElements() && !encontrado) {
+			matricula = (String)matriculas.nextElement();
+			while(!encontrado && i < surtidores.length) {
 				j = 0;
-				while (!encontrado && j < surtidores[i].getTamanio()) {
-					if (surtidores[i].getVehiculo(j).getMatricula()
-							.equalsIgnoreCase(matricula)) {
+				while(!encontrado && j < surtidores[i].getTamanio()) {
+					if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
 						encontrado = true;
 					} else {
 						j++;
@@ -225,7 +219,7 @@ public class Gasolinera {
 		Hashtable<String, Vehiculo> vehiculos = soc.getVehiculos();
 		Enumeration claves = vehiculos.keys();
 
-		while (claves.hasMoreElements()) {
+		while(claves.hasMoreElements()) {
 			System.out.println(vehiculos.get(claves.nextElement()).toString());
 			System.out.println("");
 		}
@@ -238,7 +232,7 @@ public class Gasolinera {
 		try {
 			System.out.print("Introduce el DNI: ");
 			cad = in.readLine();
-			if (Utilidades.esDni(cad)) {
+			if(Utilidades.esDni(cad)) {
 				cliente.setDni(cad);
 				System.out.print("Introduce el Nombre: ");
 				cad = in.readLine();
@@ -251,7 +245,7 @@ public class Gasolinera {
 				cliente.setDireccion(cad);
 				System.out.print("Introduce el Saldo: ");
 				cad = in.readLine();
-				if (Utilidades.esDecimal(cad)) {
+				if(Utilidades.esDecimal(cad)) {
 					cliente.setSaldo(Double.parseDouble(cad));
 					clientes.put(cliente.getDni(), cliente);
 					System.out.print("Usted ha sido inscrito correctamente. ");
@@ -264,7 +258,7 @@ public class Gasolinera {
 				System.out.print("DNI incorrecto, ");
 				Utilidades.pulsaIntro();
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 	}
@@ -272,10 +266,9 @@ public class Gasolinera {
 	private static void bajaCliente() {
 		String dni = elegirCliente();
 
-		if (Utilidades.esDni(dni) && clientes.containsKey(dni)) {
-			if (estaEnSurtidor(clientes.get(dni).getVehiculos().keys())) {
-				System.out
-						.println("Este cliente tiene alg�n veh�culo en cola. ");
+		if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
+			if(estaEnSurtidor(clientes.get(dni).getVehiculos().keys())) {
+				System.out.println("Este cliente tiene alg�n veh�culo en cola. ");
 			} else {
 				clientes.remove(dni);
 				System.out.print("se ha dado de baja correctamente");
@@ -286,7 +279,7 @@ public class Gasolinera {
 
 		try {
 			Utilidades.pulsaIntro();
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 	}
@@ -296,11 +289,11 @@ public class Gasolinera {
 		String dni = elegirCliente();
 		String cad = "";
 
-		if (Utilidades.esDni(dni) && clientes.containsKey(dni)) {
+		if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
 			System.out.println("�Cuanto saldo quiere ingresar?");
 			try {
 				cad = in.readLine();
-				if (Utilidades.esDecimal(cad)) {
+				if(Utilidades.esDecimal(cad)) {
 					cantidad = Double.parseDouble(cad);
 					clientes.get(dni).ingresarSaldo(cantidad);
 					System.out.println("Ha ingresado el saldo correctamente. ");
@@ -308,14 +301,14 @@ public class Gasolinera {
 					System.out.println("Saldo incorrecto. ");
 				}
 				Utilidades.pulsaIntro();
-			} catch (IOException ioe) {
+			} catch(IOException ioe) {
 				System.out.println("Error al leer de teclado...");
 			}
 		} else {
 			try {
 				System.out.print("DNI no valido. ");
 				Utilidades.pulsaIntro();
-			} catch (IOException ioe) {
+			} catch(IOException ioe) {
 				System.out.println("Error al leer de teclado...");
 			}
 		}
@@ -326,18 +319,15 @@ public class Gasolinera {
 		Vehiculo vehiculo;
 
 		try {
-			if (Utilidades.esDni(dni) && clientes.containsKey(dni)) {
+			if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
 				Utilidades.limpiarPantalla();
 				vehiculo = crearVehiculo();
-				if (vehiculo != null) {
+				if(vehiculo != null) {
 					clientes.get(dni).insertarVehiculo(vehiculo);
 					System.out.println("");
-					System.out
-							.println("*** Se procede a dar de alta el vehiculo del cliente: ");
-					System.out.println(clientes.get(dni).getNombre()
-							+ " con DNI: " + dni
-							+ " Veh�culo con matr�cula: "
-							+ vehiculo.getMatricula());
+					System.out.println("*** Se procede a dar de alta el vehiculo del cliente: ");
+					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni
+							+ " Veh�culo con matr�cula: " + vehiculo.getMatricula());
 					Utilidades.pulsaIntro();
 
 				}
@@ -345,7 +335,7 @@ public class Gasolinera {
 				System.out.print("DNI no valido. ");
 				Utilidades.pulsaIntro();
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
@@ -358,16 +348,16 @@ public class Gasolinera {
 		try {
 			System.out.print("Introduzca la matricula del vehiculo: ");
 			matricula = in.readLine();
-			if (!existeVehiculo(matricula)) {
+			if(!existeVehiculo(matricula)) {
 				System.out.print("Introduzca la marca del vehiculo: ");
 				marca = in.readLine();
 				System.out.println("1. Coche");
 				System.out.println("2. Moto");
 				System.out.print("\tElige tipo de vehiculo: ");
 				tipo = in.readLine();
-				if (Utilidades.esOpcionValida(tipo, 1, 2)) {
+				if(Utilidades.esOpcionValida(tipo, 1, 2)) {
 					System.out.println("");
-					switch (Integer.parseInt(tipo)) {
+					switch(Integer.parseInt(tipo)) {
 					case 1:
 						vehiculo = crearCoche(matricula, marca);
 						break;
@@ -382,7 +372,7 @@ public class Gasolinera {
 				System.out.print("Esta matricula ya esta registrada. ");
 				Utilidades.pulsaIntro();
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
@@ -401,15 +391,13 @@ public class Gasolinera {
 			System.out.println("3. " + Combustible.ELECTRICO);
 			System.out.print("\tElija tipo de carburante: ");
 			tipoCar = in.readLine();
-			if (Utilidades.esOpcionValida(tipoCar, 1, 3)) {
-				coche = new Coche(matricula, marca, modelo,
-						Combustible.getCombustibleByNum(Integer
-								.parseInt(tipoCar)));
+			if(Utilidades.esOpcionValida(tipoCar, 1, 3)) {
+				coche = new Coche(matricula, marca, modelo, Combustible.getCombustibleByNum(Integer.parseInt(tipoCar)));
 			} else {
 				System.out.print("Tipo de carburante no valido. ");
 				Utilidades.pulsaIntro();
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
@@ -423,14 +411,14 @@ public class Gasolinera {
 		try {
 			System.out.print("Introduce cilindrada");
 			cc = in.readLine();
-			if (Utilidades.esEntero(cc)) {
+			if(Utilidades.esEntero(cc)) {
 				moto = new Moto(matricula, marca, Integer.parseInt(cc));
 			} else {
 				System.out.print("Cilindrada no v�lida. ");
 				Utilidades.pulsaIntro();
 			}
 
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
@@ -441,8 +429,8 @@ public class Gasolinera {
 		Enumeration claves = clientes.keys();
 		boolean encontrado = false;
 
-		while (claves.hasMoreElements() && !encontrado) {
-			if (clientes.get(claves.nextElement()).estaVehiculo(matricula)) {
+		while(claves.hasMoreElements() && !encontrado) {
+			if(clientes.get(claves.nextElement()).estaVehiculo(matricula)) {
 				encontrado = true;
 			}
 		}
@@ -457,7 +445,7 @@ public class Gasolinera {
 		System.out.print("\tIntroduce un DNI: ");
 		try {
 			dni = in.readLine();
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
@@ -467,7 +455,7 @@ public class Gasolinera {
 	private static void listarClientes() {
 		Enumeration claves = clientes.keys();
 
-		while (claves.hasMoreElements()) {
+		while(claves.hasMoreElements()) {
 			System.out.println(clientes.get(claves.nextElement()).toString());
 			System.out.println("");
 		}
@@ -489,20 +477,20 @@ public class Gasolinera {
 		try {
 			cad = in.readLine();
 
-			if (Utilidades.esOpcionValida(cad, 1, 4)) {
+			if(Utilidades.esOpcionValida(cad, 1, 4)) {
 				opc = Integer.parseInt(cad);
 				realizarAccionAtencionCliente(opc);
 			} else {
 				System.out.println();
 				System.out.println("Opcion Invalida");
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 	}
 
 	public static void realizarAccionAtencionCliente(int opc) {
-		switch (opc) {
+		switch(opc) {
 		case 1:
 			recibirVehiculo();
 			break;
@@ -523,12 +511,12 @@ public class Gasolinera {
 			System.out.println("Introduzca la matricula del vehiculo: ");
 			matricula = in.readLine();
 
-			if (existeVehiculo(matricula)) {
+			if(existeVehiculo(matricula)) {
 				// TODO: coger vehiculo con esa matricula
 				// TODO: coger surtidor que tiene menos vehiculos.
 				// TODO: insertar vehiculo en ese surtidor
 			}
-		} catch (IOException ioe) {
+		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
@@ -536,9 +524,29 @@ public class Gasolinera {
 
 	public static void atenderVehiculo() {
 		String cantidad;
+		double cant;
 		Surtidor surtidor = obtenerMaxSuridor();
 		Vehiculo vehiculo = surtidor.atender();
+		Socio soc = getDuenio(vehiculo.getMatricula());
 
+		try {
+			System.out.println("Introduza la cantidad de dinero a retirar: ");
+			cantidad = in.readLine();
+			if(Utilidades.esDecimal(cantidad)) {
+				cant = Double.parseDouble(cantidad);
+				if(cant < soc.getSaldo()) {
+					soc.retirarSaldo(cant);
+					System.out.println("Su vehiculo ha sido atendido correctamente. Buen viaje. ");
+				} else {
+					System.out.println("Saldo insuficiente. Se procede a sacar el vehiculo del surtidor. ");
+				}
+			}else{
+				System.out.println("La cantidad introducida es erronea. ");
+			}
+			Utilidades.pulsaIntro();
+		} catch(IOException ioe) {
+			System.out.println("Error al leer de teclado...");
+		}
 	}
 
 	private static Socio getDuenio(String matricula) {
@@ -546,9 +554,9 @@ public class Gasolinera {
 		boolean encontrado = false;
 		Socio soc = null;
 
-		while (claves.hasMoreElements() && !encontrado) {
+		while(claves.hasMoreElements() && !encontrado) {
 			soc = clientes.get(claves.nextElement());
-			if (soc.estaVehiculo(matricula)) {
+			if(soc.estaVehiculo(matricula)) {
 				encontrado = true;
 			}
 		}
@@ -559,10 +567,10 @@ public class Gasolinera {
 	public static Surtidor obtenerMaxSuridor() {
 		Surtidor surtidor = null;
 
-		if (surtidores.length > 0) {
+		if(surtidores.length > 0) {
 			surtidor = surtidores[0];
-			for (int i = 1; i < surtidores.length; i++) {
-				if (surtidor.getTamanio() < surtidores[i].getTamanio()) {
+			for(int i = 1; i < surtidores.length; i++) {
+				if(surtidor.getTamanio() < surtidores[i].getTamanio()) {
 					surtidor = surtidores[i];
 				}
 			}
@@ -577,21 +585,21 @@ public class Gasolinera {
 		String cad = "";
 		int numSurtidores = -1;
 
-		while (numSurtidores < 1) {
+		while(numSurtidores < 1) {
 			System.out.print("Numero de surtidores a abrir: ");
 			try {
 				cad = in.readLine();
-				if (!Utilidades.esEntero(cad)) {
+				if(!Utilidades.esEntero(cad)) {
 					System.out.println("Introduce un numero...");
 					Utilidades.pulsaIntro();
 				} else {
 					try {
 						numSurtidores = Integer.parseInt(cad);
-					} catch (NumberFormatException nfe) {
+					} catch(NumberFormatException nfe) {
 						System.out.println("Numero no valido...");
 					}
 				}
-			} catch (IOException ioe) {
+			} catch(IOException ioe) {
 				System.out.println("Error al leer de teclado...");
 			}
 		}
