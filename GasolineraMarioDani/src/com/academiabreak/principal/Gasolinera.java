@@ -19,6 +19,7 @@ public class Gasolinera {
 		surtidores = new Surtidor[obtenerNumSurtidores()];
 
 		menuPrincipal();
+		//comentario mario
 	}
 
 	private static void menuPrincipal() {
