@@ -107,7 +107,7 @@ public class Gasolinera {
 		case 2:
 			if(hayClientes()) {
 				bajaCliente();
-			} 
+			}
 			break;
 		case 3:
 			if(hayClientes()) {
@@ -117,7 +117,7 @@ public class Gasolinera {
 		case 4:
 			if(hayClientes()) {
 				altaVehiculo();
-			} 
+			}
 			break;
 		case 5:
 			if(hayClientes()) {
@@ -127,11 +127,11 @@ public class Gasolinera {
 	}
 
 	private static boolean hayClientes() {
-		boolean hayClientes = true; 
+		boolean hayClientes = true;
 
 		if(clientes.isEmpty()) {
-			hayClientes = false; 
-			
+			hayClientes = false;
+
 			try {
 				System.out.print("Actualmente no hay socios. ");
 				Utilidades.pulsaIntro();
@@ -139,10 +139,10 @@ public class Gasolinera {
 				System.out.println("Error al leer de teclado...");
 			}
 		}
-		
-		return hayClientes; 
+
+		return hayClientes;
 	}
-	
+
 	private static void bajaVehiculo() {
 		String dni = elegirCliente();
 		String matricula = "";
@@ -150,7 +150,7 @@ public class Gasolinera {
 		try {
 			if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
 				if(clientes.get(dni).tieneVehiculos()) {
-					Utilidades.limpiarPantalla(); 
+					Utilidades.limpiarPantalla();
 					listarVehiculos(clientes.get(dni));
 					System.out.print("\tIntroduzca la matricula del vehiculo: ");
 					matricula = in.readLine();
@@ -173,50 +173,50 @@ public class Gasolinera {
 		}
 	}
 
-	private static boolean estaEnSurtidor(String matricula){
-		boolean encontrado=false;
-		int i=0;
+	private static boolean estaEnSurtidor(String matricula) {
+		boolean encontrado = false;
+		int i = 0;
 		int j;
-		
-		while(!encontrado && i<surtidores.length){
-			j=0;
-			while(!encontrado && j<surtidores[i].getTamanio()){
-				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)){
-					encontrado=true;
-				}else{
+
+		while(!encontrado && i < surtidores.length) {
+			j = 0;
+			while(!encontrado && j < surtidores[i].getTamanio()) {
+				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
+					encontrado = true;
+				} else {
 					j++;
 				}
 			}
 			i++;
 		}
-			
+
 		return encontrado;
 	}
-	
-	private static boolean estaEnSurtidor(Enumeration matriculas){
-		boolean encontrado=false;
-		int i=0;
+
+	private static boolean estaEnSurtidor(Enumeration matriculas) {
+		boolean encontrado = false;
+		int i = 0;
 		int j;
 		String matricula;
-		
-		while(matriculas.hasMoreElements() && !encontrado){
-			matricula= (String)matriculas.nextElement();
-			while(!encontrado && i<surtidores.length){
-				j=0;
-				while(!encontrado && j<surtidores[i].getTamanio()){
-					if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)){
-						encontrado=true;
-					}else{
+
+		while(matriculas.hasMoreElements() && !encontrado) {
+			matricula = (String)matriculas.nextElement();
+			while(!encontrado && i < surtidores.length) {
+				j = 0;
+				while(!encontrado && j < surtidores[i].getTamanio()) {
+					if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
+						encontrado = true;
+					} else {
 						j++;
 					}
 				}
 				i++;
 			}
 		}
-			
+
 		return encontrado;
 	}
-	
+
 	private static void listarVehiculos(Socio soc) {
 		Hashtable<String, Vehiculo> vehiculos = soc.getVehiculos();
 		Enumeration claves = vehiculos.keys();
@@ -269,9 +269,9 @@ public class Gasolinera {
 		String dni = elegirCliente();
 
 		if(Utilidades.esDni(dni) && clientes.containsKey(dni)) {
-			if(estaEnSurtidor(clientes.get(dni).getVehiculos().keys())){
+			if(estaEnSurtidor(clientes.get(dni).getVehiculos().keys())) {
 				System.out.println("Este cliente tiene alg�n veh�culo en cola. ");
-			}else{
+			} else {
 				clientes.remove(dni);
 				System.out.print("se ha dado de baja correctamente");
 			}
@@ -328,10 +328,10 @@ public class Gasolinera {
 					clientes.get(dni).insertarVehiculo(vehiculo);
 					System.out.println("");
 					System.out.println("*** Se procede a dar de alta el vehiculo del cliente: ");
-					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni + " Veh�culo con matr�cula: "
-							+ vehiculo.getMatricula());
+					System.out.println(clientes.get(dni).getNombre() + " con DNI: " + dni
+							+ " Veh�culo con matr�cula: " + vehiculo.getMatricula());
 					Utilidades.pulsaIntro();
-					
+
 				}
 			} else {
 				System.out.print("DNI no valido. ");
@@ -462,6 +462,7 @@ public class Gasolinera {
 			System.out.println("");
 		}
 	}
+
 	// FIN GESTION CLIENTES
 
 	// TODO:ATENCION CLIENTES
@@ -513,36 +514,73 @@ public class Gasolinera {
 			matricula = in.readLine();
 
 			if(existeVehiculo(matricula)) {
-				//TODO: coger vehiculo con esa matricula
-				//TODO: coger surtidor que tiene menos vehiculos.
-				//TODO: insertar vehiculo en ese surtidor
+				// TODO: coger vehiculo con esa matricula
+				// TODO: coger surtidor que tiene menos vehiculos.
+				// TODO: insertar vehiculo en ese surtidor
 			}
 		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
 		}
 
 	}
-	
-	public static void atenderVehiculo(){
-		
+
+	public static void atenderVehiculo() {
+		String cantidad;
+		double cant;
+		Surtidor surtidor = obtenerMaxSuridor();
+		Vehiculo vehiculo = surtidor.atender();
+		Socio soc = getDuenio(vehiculo.getMatricula());
+
+		try {
+			System.out.println("Introduza la cantidad de dinero a retirar: ");
+			cantidad = in.readLine();
+			if(Utilidades.esDecimal(cantidad)) {
+				cant = Double.parseDouble(cantidad);
+				if(cant < soc.getSaldo()) {
+					soc.retirarSaldo(cant);
+					System.out.println("Su vehiculo ha sido atendido correctamente. Buen viaje. ");
+				} else {
+					System.out.println("Saldo insuficiente. Se procede a sacar el vehiculo del surtidor. ");
+				}
+			}else{
+				System.out.println("La cantidad introducida es erronea. ");
+			}
+			Utilidades.pulsaIntro();
+		} catch(IOException ioe) {
+			System.out.println("Error al leer de teclado...");
+		}
 	}
-	
-	public static Surtidor obtenerMaxSuridor(){
-		Surtidor surtidor=null;
-		
-		if(surtidores.length > 0){
+
+	private static Socio getDuenio(String matricula) {
+		Enumeration claves = clientes.keys();
+		boolean encontrado = false;
+		Socio soc = null;
+
+		while(claves.hasMoreElements() && !encontrado) {
+			soc = clientes.get(claves.nextElement());
+			if(soc.estaVehiculo(matricula)) {
+				encontrado = true;
+			}
+		}
+
+		return soc;
+	}
+
+	public static Surtidor obtenerMaxSuridor() {
+		Surtidor surtidor = null;
+
+		if(surtidores.length > 0) {
 			surtidor = surtidores[0];
-			for(int i=1; i<surtidores.length;i++){
-				if(surtidor.getTamanio() < surtidores[i].getTamanio()){
-					surtidor=surtidores[i];
+			for(int i = 1; i < surtidores.length; i++) {
+				if(surtidor.getTamanio() < surtidores[i].getTamanio()) {
+					surtidor = surtidores[i];
 				}
 			}
 		}
-		
+
 		return surtidor;
 	}
-	
-	
+
 	// FIN ATENCION CLIENTE
 
 	private static int obtenerNumSurtidores() {
