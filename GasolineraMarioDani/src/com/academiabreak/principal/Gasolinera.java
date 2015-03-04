@@ -522,6 +522,27 @@ public class Gasolinera {
 		}
 
 	}
+	
+	public static void atenderVehiculo(){
+		
+	}
+	
+	public static Surtidor obtenerMaxSuridor(){
+		Surtidor surtidor=null;
+		
+		if(surtidores.length > 0){
+			surtidor = surtidores[0];
+			for(int i=1; i<surtidores.length;i++){
+				if(surtidor.getTamanio() < surtidores[i].getTamanio()){
+					surtidor=surtidores[i];
+				}
+			}
+		}
+		
+		return surtidor;
+	}
+	
+	
 	// FIN ATENCION CLIENTE
 
 	private static int obtenerNumSurtidores() {
