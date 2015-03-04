@@ -17,7 +17,9 @@ public class Gasolinera {
 		clientes = new Hashtable<String, Socio>();
 		in = new BufferedReader(new InputStreamReader(System.in));
 		surtidores = new Surtidor[obtenerNumSurtidores()];
-
+		
+		//TODO: cambiar los textos por los del enunciado
+		
 		menuPrincipal();
 	}
 
@@ -526,7 +528,7 @@ public class Gasolinera {
 		String cad = "";
 		int numSurtidores = -1;
 
-		while(numSurtidores < 0) {
+		while(numSurtidores < 1) {
 			System.out.print("Numero de surtidores a abrir: ");
 			try {
 				cad = in.readLine();
