@@ -179,7 +179,7 @@ public class Gasolinera {
 
 		while(!encontrado && i < surtidores.length) {
 			j = 0;
-			while(!encontrado && j < surtidores[i].getTamaño()) {
+			while(!encontrado && j < surtidores[i].getTamanio()) {
 				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
 					encontrado = true;
 				} else {
@@ -202,7 +202,7 @@ public class Gasolinera {
 			matricula = (String)matriculas.nextElement();
 			while(!encontrado && i < surtidores.length) {
 				j = 0;
-				while(!encontrado && j < surtidores[i].getTamaño()) {
+				while(!encontrado && j < surtidores[i].getTamanio()) {
 					if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
 						encontrado = true;
 					} else {
@@ -552,7 +552,7 @@ public class Gasolinera {
 		Surtidor surtidor = surtidores[0];
 
 		for(int i = 0; i < surtidores.length; i++) {
-			if(surtidores[i].getTamaño() < surtidor.getTamaño()) {
+			if(surtidores[i].getTamanio() < surtidor.getTamanio()) {
 				surtidor = surtidores[i];
 			}
 		}
