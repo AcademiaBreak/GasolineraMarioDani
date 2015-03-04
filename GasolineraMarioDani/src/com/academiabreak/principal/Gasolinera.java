@@ -21,6 +21,7 @@ public class Gasolinera {
 		//TODO: cambiar los textos por los del enunciado
 		
 		menuPrincipal();
+
 	}
 
 	private static void menuPrincipal() {
@@ -507,6 +508,8 @@ public class Gasolinera {
 
 	public static void recibirVehiculo() {
 		String matricula;
+		Surtidor surt = obtenerMinSurtidor();
+		Vehiculo vehiculo;
 
 		Utilidades.limpiarPantalla();
 		try {
@@ -514,9 +517,12 @@ public class Gasolinera {
 			matricula = in.readLine();
 
 			if(existeVehiculo(matricula)) {
-				// TODO: coger vehiculo con esa matricula
-				// TODO: coger surtidor que tiene menos vehiculos.
-				// TODO: insertar vehiculo en ese surtidor
+				vehiculo = obtenerVehiculo(matricula);
+				surt.insertar(vehiculo);
+				System.out.println("***Se procede a introducir al vehículo en el surtidor:");
+				System.out.println(matricula+" se introduce en la cola del surtidor:"+ surt.getId());
+				System.out.println("");
+				Utilidades.pulsaIntro();
 			}
 		} catch(IOException ioe) {
 			System.out.println("Error al leer de teclado...");
@@ -580,8 +586,36 @@ public class Gasolinera {
 
 		return surtidor;
 	}
-
 	// FIN ATENCION CLIENTE
+	
+	private static Vehiculo obtenerVehiculo(String matricula) {
+		Vehiculo vehiculo = null;
+		boolean encontrado = false;
+		Enumeration claves = clientes.keys();
+		Socio socio;
+
+		while(!encontrado && claves.hasMoreElements()) {
+			socio = clientes.get(claves.nextElement());
+
+			if(socio.estaVehiculo(matricula)) {
+				encontrado = true;
+				vehiculo = socio.getVehiculo(matricula);
+			}
+		}
+
+		return vehiculo;
+	}
+
+	private static Surtidor obtenerMinSurtidor() {
+		Surtidor surtidor = surtidores[0];
+
+		for(int i = 0; i < surtidores.length; i++) {
+			if(surtidores[i].getTamanio() < surtidor.getTamanio()) {
+				surtidor = surtidores[i];
+			}
+		}
+		return surtidor;
+	}
 
 	private static int obtenerNumSurtidores() {
 		String cad = "";

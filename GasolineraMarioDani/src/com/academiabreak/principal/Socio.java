@@ -101,6 +101,10 @@ public class Socio {
 		this.saldo += cant; 
 	}
 	
+	public Vehiculo getVehiculo(String matricula){
+		return vehiculos.get(matricula);
+	}
+	
 	public boolean retirarSaldo(double cant) {
 		boolean retirado = false; 
 		
