@@ -19,7 +19,7 @@ public class Gasolinera {
 		surtidores = new Surtidor[obtenerNumSurtidores()];
 
 		menuPrincipal();
-		//comentario mario
+		
 	}
 
 	private static void menuPrincipal() {
@@ -512,6 +512,7 @@ public class Gasolinera {
 			matricula = in.readLine();
 
 			if(existeVehiculo(matricula)) {
+				
 				//TODO: coger vehiculo con esa matricula
 				//TODO: coger surtidor que tiene menos vehiculos.
 				//TODO: insertar vehiculo en ese surtidor
@@ -522,12 +523,22 @@ public class Gasolinera {
 
 	}
 	// FIN ATENCION CLIENTE
+	private static Surtidor obtenerMinSurtidor(){
+		Surtidor surtidor = surtidores[0];
+		
+		for(int i=0; i<surtidores.length; i++){
+			if(surtidores[i].getTamaño() < surtidor.getTamaño()){
+				surtidor = surtidores[i];
+			}
+		}	
+		return surtidor;
+	}
 
 	private static int obtenerNumSurtidores() {
 		String cad = "";
 		int numSurtidores = -1;
 
-		while(numSurtidores < 0) {
+		while(numSurtidores < 1) {
 			System.out.print("Numero de surtidores a abrir: ");
 			try {
 				cad = in.readLine();
