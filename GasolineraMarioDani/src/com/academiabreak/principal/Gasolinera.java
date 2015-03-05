@@ -182,6 +182,7 @@ public class Gasolinera {
 		while(!encontrado && i < surtidores.length) {
 			j = 0;
 			while(!encontrado && j < surtidores[i].getTamanio()) {
+				//TODO: esta comprobacion se deberia hacer en el surtidor
 				if(surtidores[i].getVehiculo(j).getMatricula().equalsIgnoreCase(matricula)) {
 					encontrado = true;
 				} else {

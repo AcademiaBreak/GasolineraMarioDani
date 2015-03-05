@@ -28,6 +28,11 @@ public class Surtidor {
 		return lista.get(pos);  
 	}
 	
+	public boolean estaVehiculo(String matricula) {
+		//TODO: implementar estaVehiculo
+		return true; 
+	}
+	
 	public int getTamanio() {
 		return lista.size(); 
 	}
