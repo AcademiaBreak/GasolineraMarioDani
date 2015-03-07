@@ -24,13 +24,9 @@ public class Surtidor {
 		return lista.remove(0);
 	}
 	
+	//TODO: Esto no debe hacerse
 	public Vehiculo getVehiculo(int pos){
 		return lista.get(pos);  
-	}
-	
-	public boolean estaVehiculo(String matricula) {
-		//TODO: implementar estaVehiculo
-		return true; 
 	}
 	
 	public int getTamanio() {
