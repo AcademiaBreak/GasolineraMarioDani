@@ -93,7 +93,7 @@ public class Utilidades {
 
 			if (!cadDni.isEmpty() && letrasDni.charAt(Integer.parseInt(cadDni) % 23) != Character.toUpperCase(cad.charAt(cad.length() - 1))) {
 				esDni = false;
-			}
+			} 
 		}
 
 		return esDni;

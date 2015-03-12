@@ -21,9 +21,8 @@ public class Gasolinera {
 		//TODO: cambiar los textos por los del enunciado
 		
 		menuPrincipal();
-
 	}
-
+	
 	private static void menuPrincipal() {
 		String cad = "";
 		int opc = 0;
